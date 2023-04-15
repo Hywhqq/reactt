@@ -18,21 +18,27 @@ const HomePage = () => {
         setQuery(event.target.value.toLowerCase());
     }
     const filteredProducts = items.filter((item) => item.name.toLowerCase().includes(query));
-    const fetchServices = async() => {
-        const response = await fetch('https://exam.avavion.ru/api/services');
+    const fetchProducts = async() => {
+        const response = await fetch('https://flowers.avavion.ru/api/products');
         
         const data = await response.json();
 
         setItems(data.data);
     }
+    
 
     useEffect(() => {
-        fetchServices();
+        fetchProducts();
     }, []);
 
     return (
+            
         <div className="container">
-
+            <header>
+            <img src="src/assets/logo.webp" Class="logo"></img>
+            
+            </header>
+            
             <section id="catalog" className="box">
                 <div className="catalog_container container">
                     <div className="catalog_header">
@@ -51,18 +57,20 @@ const HomePage = () => {
                         {/* поиск */}
                     </div>
                     <div className="services">
-                       
+                   
                         {
                              filteredProducts.length ? 
                              (
-                                filteredProducts.map((service) => {
+                                filteredProducts.map((products) => {
                                     return (
-                                        <div class="" key={service.id}>
-                                            <img src={service.image_url} alt="" />
-                                            <h2>{service.name}</h2>
-                                            <p>{service.content}</p>
+                                        <div class="" key={products.id}>
+                                            <img src={products.preview_image} alt="" />
+                                            <h2>{products.name}</h2>
+                                            <h4>{products.text}</h4>
+                                            <p>{products.price}</p>
+                                            
                         
-                                            <NavLink to={`/services/${service.id}`} >Перейти</NavLink>
+                                            <NavLink to={`/products/${products.id}`} >Перейти</NavLink>
                                         </div>
                                     );
                                 })

@@ -3,17 +3,22 @@ import Swal from "sweetalert2";
 
 const FeedbackPage = () => {
     const [form, setForm] = useState({
-        email: "",
-        first_name: "",
-        last_name: "",
+        // email: "",
+        // first_name: "",
+        // last_name: "",
+        // message: "",
+        // service_id: 1
+        full_name: "",
+        address: "",
         message: "",
-        service_id: 1
+        product_id: 1,
+        email: "",
     });
 
     const [services, setServices] = useState([]);
 
     const fetchServices = async() => {
-        const response = await fetch('https://exam.avavion.ru/api/services');
+        const response = await fetch('https://flowers.avavion.ru/api/products');
         
         const data = await response.json();
 
@@ -41,7 +46,7 @@ const FeedbackPage = () => {
     }
 
     const sendRequest = async (body) => {
-        const response = await fetch('https://exam.avavion.ru/api/requests/create', {
+        const response = await fetch('https://flowers.avavion.ru/api/applications/create', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -85,37 +90,37 @@ const FeedbackPage = () => {
     return(
         <div className="feedback_container">
             <div className="feedback_box-container container">
-                <div className="feedback_text-box">
-                    <h1>Подписка на рассылку</h1>
+                <div className="feedback_actions">
+                    <h1>Добавьте новую заявку!</h1>
                     <p>
-                    Lorem ipsum dolor sit amet consectetur. Eget mattis proin mauris orci gravida. Mauris bibendum aliquam ultrices augue mauris lacus. Dui ut eleifend egestas amet nec luctus morbi. Egestas tincidunt libero nisi eget ullamcorper. Lorem ipsum dolor sit amet consectetur.
+                    Оставьте заявку заполнив данные снизу!
                     </p>
                     <form onSubmit={onSubmitHandle.bind(this)} className="feedback_actions">
                         <div className="search-box">
                             <input 
                             onChange={onChangeForm.bind(this)}
-                            value={form.email} 
-                            type="email" 
-                            name="email" 
-                            id="email"
-                            placeholder="Email..." 
+                            value={form.full_name} 
+                            type="text" 
+                            name="full_name" 
+                            id="full_name"
+                            placeholder="ФИО" 
                             className="search-box_input" />
                         </div>
                         <input 
                             onChange={onChangeForm.bind(this)}
-                            value={form.full_name} 
+                            value={form.address} 
                             type="text" 
-                            name="last_name" 
-                            id="last_name"
-                            placeholder="fulname..." 
+                            name="address" 
+                            id="adress"
+                            placeholder="Введите адрес" 
                             className="search-box_input" />
                         <input 
                             onChange={onChangeForm.bind(this)}
-                            value={form.first_name} 
-                            type="text" 
-                            name="first_name" 
-                            id="last_name"
-                            placeholder="fulname..." 
+                            value={form.email} 
+                            type="email" 
+                            name="email" 
+                            id="email"
+                            placeholder="Введите почту!" 
                             className="search-box_input" />
                         <input 
                             onChange={onChangeForm.bind(this)}
@@ -123,7 +128,7 @@ const FeedbackPage = () => {
                             type="text" 
                             name="message" 
                             id="message"
-                            placeholder="message..." 
+                            placeholder="Введите сообщение" 
                             className="search-box_input" />
                         <button onClick={onClickHandle.bind(this)} className="button-style">Отправить</button>
                     </form>
