@@ -42,11 +42,12 @@ img {
     object-fit: cover;
     border-radius: 8px;
 }
-.singlepage{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.singepage{
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+margin-left: 150px;
 }
 body {
   margin: 0;

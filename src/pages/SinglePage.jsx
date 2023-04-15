@@ -15,7 +15,7 @@ const SinglePage = () => {
 
     return (
         <div class="singlepage">
-            <div key={service.id}>
+            <div key={service.id} class="singepage">
                 <img src={service.preview_image} alt="" />
                 <h2>{service.name}</h2>
                 <h4>{service.text}</h4>
